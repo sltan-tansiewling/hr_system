@@ -13,17 +13,31 @@ module.exports = (db) => {
 
     let postLoginControllerCallback = (request, response) => {
 
-        // Get the username of the logged in user
+        // Get user input
         let userInputUsername = request.body.username;
-        console.log("In controller, the username is: " + userInputUsername);
+        let userInputPassword = request.body.password;
 
         // Check the role of the user logged in
-        db.employees.checkUserRole(userInputUsername, (error, queryResult) => {
+        db.employees.checkUserExists(userInputUsername, (error, userExists) => {
 
-            response.send(queryResult.rows);
+            if (userExists.length > 0) {
+                console.log("Valid account. You are logged in!");
+
+                // Check if password matches
+                if (userExists[0].password === userInputPassword) {
+
+                    // If password match, check user role type ID
+                    response.send("Your role type ID is: " + userExists[0].role_type_id);
+                }
+
+                else {
+                    response.send("Your password doesn't match.");
+                }
+
+            } else {
+                response.send("Your account does not exist. Please check with your HR.");
+            }
         });
-
-        // response.send("You have logged in!");
     };
 
     /**
