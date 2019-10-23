@@ -18,7 +18,9 @@ CREATE TABLE IF NOT EXISTS employees (
     name TEXT,
     dept TEXT,
     join_since DATE,
-    role_type_id INTEGER
+    role_type_id INTEGER,
+    username TEXT,
+    password TEXT
 );
 
 CREATE TABLE IF NOT EXISTS leave_application (
