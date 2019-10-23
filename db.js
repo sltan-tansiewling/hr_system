@@ -57,22 +57,14 @@ pool.on('error', function (err) {
  * ===================================================
  */
 
- // Is this correct? Does this means that we are establishing connection to each of the tables?
-
-const allRoleTypesModelsObject = require('./models/roleTypes');
-const roleTypesModelsObject = allRoleTypesModelsObject( pool );
-
-const allLeaveTypesModelsObject = require('./models/leaveTypes');
-const leaveTypesModelsObject = allLeaveTypesModelsObject( pool );
-
-const allLeaveStatusModelsObject = require('./models/leaveStatus');
-const leaveStatusModelsObject = allLeaveStatusModelsObject( pool );
-
 const allEmployeesModelsObject = require('./models/employees');
 const employeesModelsObject = allEmployeesModelsObject( pool );
 
-const allLeaveApplicationModelsObject = require('./models/leaveApplication');
-const leaveApplicationModelsObject = allLeaveApplicationModelsObject( pool );
+const allHrModelsObject = require('./models/hr');
+const hrModelsObject = allHrModelsObject( pool );
+
+/*const allStaffModelsObject = require('./models/staff');
+const staffModelsObject = allStaffModelsObject( pool );*/
 
 /*
  * ===================================================
@@ -99,9 +91,8 @@ module.exports = {
     /*
     * ADD APP MODELS HERE
     */
-    roleTypes: roleTypesModelsObject,
-    leaveTypes: leaveTypesModelsObject,
-    leaveStatus: leaveStatusModelsObject,
+
     employees: employeesModelsObject,
-    leaveApplication: leaveApplicationModelsObject
+    hr: hrModelsObject,
+    /*staff: staffModelsObject*/
 };
