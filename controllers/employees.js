@@ -31,7 +31,7 @@ module.exports = (db) => {
 
                     switch(userExists[0].role_type_id) {
                         case 1:
-                            response.send("You are HR");
+                            response.redirect('/hr/leaveApplication');
                             break;
                         case 2:
                             response.send("You are staff");
