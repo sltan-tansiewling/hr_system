@@ -13,7 +13,17 @@ module.exports = (db) => {
 
     let postLoginControllerCallback = (request, response) => {
 
-        response.send("You have logged in!");
+        // Get the username of the logged in user
+        let userInputUsername = request.body.username;
+        console.log("In controller, the username is: " + userInputUsername);
+
+        // Check the role of the user logged in
+        db.employees.checkUserRole(userInputUsername, (error, queryResult) => {
+
+            response.send(queryResult.rows);
+        });
+
+        // response.send("You have logged in!");
     };
 
     /**
