@@ -86,20 +86,20 @@ const leaveApplicationModelsObject = allLeaveApplicationModelsObject( pool );
 
 module.exports = {
 
-  //make queries directly from here
-  queryInterface: (text, params, callback) => {
-    return pool.query(text, params, callback);
-  },
+    //make queries directly from here
+    queryInterface: (text, params, callback) => {
+        return pool.query(text, params, callback);
+    },
 
-  // get a reference to end the connection pool at server end
-  pool:pool,
+    // get a reference to end the connection pool at server end
+    pool:pool,
 
-  /*
-   * ADD APP MODELS HERE
-   */
-   roleTypes: roleTypesModelsObject,
-   leaveTypes: leaveTypesModelsObject,
-   leaveStatus: leaveStatusModelsObject,
-   employees: employeesModelsObject,
-   leaveApplication: leaveApplicationModelsObject
+    /*
+    * ADD APP MODELS HERE
+    */
+    roleTypes: roleTypesModelsObject,
+    leaveTypes: leaveTypesModelsObject,
+    leaveStatus: leaveStatusModelsObject,
+    employees: employeesModelsObject,
+    leaveApplication: leaveApplicationModelsObject
 };
