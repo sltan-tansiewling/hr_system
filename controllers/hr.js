@@ -8,7 +8,25 @@ module.exports = (db) => {
 
     let getAllStaffLeaveApplication = (request, response) => {
 
-        response.send("You are viewing all staff leave application.");
+        db.hr.getStaffLeaveApplications ((error, leaveApplications) => {
+
+            if (error) {
+                console.log("Error occurred");
+            } else {
+
+                if (leaveApplications.length > 0) {
+
+                    const data = {
+                        records: leaveApplications
+                    };
+                    response.render('hr/leaveApplication', data);
+
+                } else {
+                    response.send("There are no leave applications.");
+                }
+
+            }
+        });
     };
 
     /**
