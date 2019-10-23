@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS leave_status (
     name TEXT
 );
 
-CREATE TABLE IF NOT EXISTS employee (
+CREATE TABLE IF NOT EXISTS employees (
     id SERIAL PRIMARY KEY,
     name TEXT,
     dept TEXT,
