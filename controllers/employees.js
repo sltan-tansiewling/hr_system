@@ -27,9 +27,20 @@ module.exports = (db) => {
                 if (userExists[0].password === userInputPassword) {
 
                     // If password match, check user role type ID
-                    response.send("Your role type ID is: " + userExists[0].role_type_id);
-                }
+                    console.log("Your role type ID is: " + userExists[0].role_type_id);
 
+                    switch(userExists[0].role_type_id) {
+                        case 1:
+                            response.send("You are HR");
+                            break;
+                        case 2:
+                            response.send("You are staff");
+                            break;
+                        default:
+                            response.send("Your role is not defined in the system yet.");
+                            break;
+                    }
+                }
                 else {
                     response.send("Your password doesn't match.");
                 }
