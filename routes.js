@@ -47,7 +47,7 @@ module.exports = (app, allModels) => {
    */
 
    // Require the controllers
-   const employeeControllerCallbacks = require('./controllers/employee')(allModels);
+   const employeeControllerCallbacks = require('./controllers/employees')(allModels);
 
    const hrControllerCallbacks = require('./controllers/hr')(allModels);
 
