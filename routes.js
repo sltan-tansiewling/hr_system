@@ -59,9 +59,9 @@ module.exports = (app, allModels) => {
 
    // Routes for HR
    app.get('/hr/leaveApplication', hrControllerCallbacks.getAllLeaveApplication);
-/*   app.get('/hr/leaveApplication/:leaveStatus', hrControllerCallbacks.getAllLeaveApplicationByStatus);
+   // app.get('/hr/leaveApplication/:leaveStatus', hrControllerCallbacks.getAllLeaveApplicationByStatus);
    app.get('/hr/leaveApplication/:id', hrControllerCallbacks.getLeaveApplicationById);
-   app.get('/hr/leaveApplication/:id/edit', hrControllerCallbacks.getEditLeaveApplicationById);
+   /*app.get('/hr/leaveApplication/:id/edit', hrControllerCallbacks.getEditLeaveApplicationById);
    app.put('/hr/leaveApplication/:id', hrControllerCallbacks.updateLeaveApplicationById);*/
 
    // Routes for Staff
