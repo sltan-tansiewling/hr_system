@@ -57,6 +57,8 @@ pool.on('error', function (err) {
  * ===================================================
  */
 
+ // Is this correct? Does this means that we are establishing connection to each of the tables?
+
 const allRoleTypesModelsObject = require('./models/roleTypes');
 const roleTypesModelsObject = allRoleTypesModelsObject( pool );
 
