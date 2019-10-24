@@ -27,7 +27,6 @@ module.exports = (dbPoolInstance) => {
 
         dbPoolInstance.query(getStaffLeaveIdQuery, selectedId, (error, queryResult) => {
 
-            console.log(selectedId);
             if (error) {
                 console.log("There is an error querying for leave application by id.");
                 callback(error, null);
@@ -37,8 +36,36 @@ module.exports = (dbPoolInstance) => {
         });
     };
 
+    let updateStaffLeaveApplicationStatusById = (inputs, callback) => {
+
+        console.log("Model inputs: ", inputs);
+        let selectedId = inputs[1];
+        console.log("Model: Selected ID is " + selectedId);
+
+        let newStatus = inputs[0];
+        console.log("Model: New Status is " + newStatus);
+
+        let newValues = [newStatus, selectedId];
+        console.log("Model: New values is ", newValues);
+
+        let updateStatusQuery = "UPDATE leave_application SET leave_status_id = (SELECT id FROM leave_status WHERE name = $1) WHERE id = $2";
+
+        dbPoolInstance.query(updateStatusQuery, newValues, (error, queryResult) => {
+
+            if (error) {
+                console.log("There is an error updating leave application status.");
+                console.log(error.message);
+                callback(error, null);
+            } else {
+                callback(null, queryResult.rows);
+                console.log("Model: Update successful!");
+            }
+        });
+    };
+
     return {
         getStaffLeaveApplications,
-        getStaffLeaveApplicationById
+        getStaffLeaveApplicationById,
+        updateStaffLeaveApplicationStatusById
     };
 };
