@@ -1,15 +1,13 @@
 var React = require('react');
+var DefaultLayout = require('../layouts/default');
 
 class LeaveApplication extends React.Component {
 
     render () {
 
         return (
-            <html>
-            <head>
-                <title>HR - View Staff Leave Application Details</title>
-            </head>
-            <body>
+
+            <DefaultLayout title="HR - View Staff Leave Application Details">
                 <h1>Staff Leave Application Details</h1>
                 <form method="GET">
                     ID: <input type="text" name="id" value={this.props.records[0].id} readOnly />
@@ -25,8 +23,7 @@ class LeaveApplication extends React.Component {
                     Status: <input type="text" name="status" value={this.props.records[0].status} readOnly />
                 </form>
                 <a href={"/hr/leaveApplication/" + this.props.records[0].id + "/edit"}>Edit</a>
-            </body>
-            </html>
+            </DefaultLayout>
         );
     };
 };

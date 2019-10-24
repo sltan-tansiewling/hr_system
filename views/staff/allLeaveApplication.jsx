@@ -1,4 +1,5 @@
 var React = require('react');
+var DefaultLayout = require('../layouts/default');
 
 class AllLeaveApplication extends React.Component {
     render() {
@@ -19,11 +20,8 @@ class AllLeaveApplication extends React.Component {
         });
 
         return (
-            <html>
-            <head>
-                <title>Staff: View All Leave Applications</title>
-            </head>
-            <body>
+
+            <DefaultLayout title="Staff: View All Leave Applications">
                 <h1>All Leave Applications</h1>
                 <table>
                     <tr>
@@ -37,8 +35,7 @@ class AllLeaveApplication extends React.Component {
                     </tr>
                     {displayRecords}
                 </table>
-            </body>
-            </html>
+            </DefaultLayout>
         );
     };
 };
