@@ -90,7 +90,11 @@ module.exports = (db) => {
         let newStatus = request.body.status;
         console.log("Controller: New Status is " + newStatus);
 
-        let newValues = [newStatus, selectedLeaveApplicationId];
+        let newValues = {
+            newStatus: request.body.status,
+            selectedLeaveApplicationId: parseInt(request.params.id)
+        };
+
         console.log("Controller: New Values: ", newValues);
 
         db.hr.updateStaffLeaveApplicationStatusById(newValues, (error, leaveApplicationDetails) => {
