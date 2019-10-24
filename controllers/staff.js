@@ -51,6 +51,30 @@ module.exports = (db) => {
         });
      };
 
+     let getLeaveApplicationById = (request, response) => {
+
+        let selectedLeaveApplicationId = [request.params.id];
+
+        db.staff.getLeaveApplicationDetailsById(selectedLeaveApplicationId, (error, leaveApplicationDetails) => {
+
+            if (error) {
+                console.log("Error occurred");
+            } else {
+
+                if (leaveApplicationDetails.length > 0) {
+
+                    const data = {
+                        records: leaveApplicationDetails
+                    };
+
+                    response.render('staff/leaveApplicationById', data);
+
+                } else {
+                    response.send("There are no leave applications with this ID.");
+                }
+            }
+        });
+     };
 
     /**
      * ===========================================
@@ -58,8 +82,9 @@ module.exports = (db) => {
      * ===========================================
      */
     return {
+        getAllLeaveApplication,
         getNewLeaveApplicationForm,
         createLeaveApplication,
-        getAllLeaveApplication
+        getLeaveApplicationById
     };
 };
