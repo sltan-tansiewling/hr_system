@@ -69,6 +69,6 @@ module.exports = (app, allModels) => {
    app.get('/staff/leaveApplication/new', staffControllerCallbacks.getNewLeaveApplicationForm);
    app.post('/staff/leaveApplication', staffControllerCallbacks.createLeaveApplication);
    app.get('/staff/leaveApplication/:id', staffControllerCallbacks.getLeaveApplicationById);
-   /*app.get('/staff/leaveApplication/:id/edit', staffControllerCallbacks.getEditLeaveApplicationById);
-   app.put('/staff/leaveApplication/:id', staffControllerCallbacks.updateLeaveApplicationById);*/
+   app.get('/staff/leaveApplication/:id/edit', staffControllerCallbacks.getEditLeaveApplicationById);
+   app.put('/staff/leaveApplication/:id', staffControllerCallbacks.updateLeaveApplicationById);
 };
