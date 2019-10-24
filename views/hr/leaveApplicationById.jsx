@@ -23,9 +23,8 @@ class LeaveApplication extends React.Component {
                     End Date: <input type="text" name="end_date" value={this.props.records[0].end_date} readOnly />
                     <br />
                     Status: <input type="text" name="status" value={this.props.records[0].status} readOnly />
-                    <br />
-                    <input type="submit" value="Edit" />
                 </form>
+                <a href={"/hr/leaveApplication/" + this.props.records[0].id + "/edit"}>Edit</a>
             </body>
             </html>
         );
