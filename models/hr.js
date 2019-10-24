@@ -39,10 +39,10 @@ module.exports = (dbPoolInstance) => {
     let updateStaffLeaveApplicationStatusById = (inputs, callback) => {
 
         console.log("Model inputs: ", inputs);
-        let selectedId = inputs[1];
+        let selectedId = inputs.selectedLeaveApplicationId;
         console.log("Model: Selected ID is " + selectedId);
 
-        let newStatus = inputs[0];
+        let newStatus = inputs.newStatus;
         console.log("Model: New Status is " + newStatus);
 
         let newValues = [newStatus, selectedId];
