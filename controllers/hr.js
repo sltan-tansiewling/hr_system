@@ -103,9 +103,10 @@ module.exports = (db) => {
                 console.log("Error occurred");
             } else {
                 console.log("Controller: Update successful!");
-                response.redirect("/hr/leaveApplication/" + selectedLeaveApplicationId);
             }
         });
+
+        response.redirect("/hr/leaveApplication/" + selectedLeaveApplicationId);
     };
 
 
