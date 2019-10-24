@@ -5,6 +5,23 @@
  */
 module.exports = (dbPoolInstance) => {
 
+    let getOwnLeaveApplications = (userId, callback) => {
+
+        let employeeId = [userId];
+        console.log("Model employeeId " + employeeId);
+
+        let getOwnLeaveQuery = "SELECT leave_application.id, leave_type.name AS leave_type, leave_application.start_date, leave_application.end_date, leave_status.name AS status FROM leave_application INNER JOIN leave_type ON (leave_application.leave_type_id = leave_type.id) INNER JOIN leave_status ON (leave_application.leave_status_id = leave_status.id) WHERE leave_application.employee_id = $1";
+
+        dbPoolInstance.query(getOwnLeaveQuery, employeeId, (error, queryResult) => {
+
+            if (error) {
+                callback (error.message, null);
+            } else {
+                callback (null, queryResult.rows);
+            }
+        });
+    };
+
     let createNewLeaveApplication = (inputs, callback) => {
 
         let leaveType = [inputs.leaveType];
@@ -50,10 +67,10 @@ module.exports = (dbPoolInstance) => {
                 });
             }
         });
-
     };
 
     return {
+        getOwnLeaveApplications,
         createNewLeaveApplication
     };
 };
