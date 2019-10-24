@@ -15,7 +15,7 @@ class LeaveApplication extends React.Component {
                     <td>{application.end_date}</td>
                     <td>{application.status}</td>
                     <td><a href={"/hr/leaveApplication/" + application.id}>View</a></td>
-                    <td>Edit</td>
+                    <td><a href={"/hr/leaveApplication/" + application.id + "/edit"}>Edit</a></td>
                 </tr>
             );
         });
