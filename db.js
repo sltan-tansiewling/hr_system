@@ -63,8 +63,8 @@ const employeesModelsObject = allEmployeesModelsObject( pool );
 const allHrModelsObject = require('./models/hr');
 const hrModelsObject = allHrModelsObject( pool );
 
-/*const allStaffModelsObject = require('./models/staff');
-const staffModelsObject = allStaffModelsObject( pool );*/
+const allStaffModelsObject = require('./models/staff');
+const staffModelsObject = allStaffModelsObject( pool );
 
 /*
  * ===================================================
@@ -94,5 +94,5 @@ module.exports = {
 
     employees: employeesModelsObject,
     hr: hrModelsObject,
-    /*staff: staffModelsObject*/
+    staff: staffModelsObject
 };
