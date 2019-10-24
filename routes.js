@@ -5,7 +5,7 @@ module.exports = (app, allModels) => {
    *  =========================================
    *  =========================================
    *  =========================================
-   *    ALL ROUTES FOR POKEMON CONTROLLER
+   *    ALL ROUTES FOR CONTROLLER
    *  =========================================
    *  =========================================
    *  =========================================
@@ -51,7 +51,7 @@ module.exports = (app, allModels) => {
 
    const hrControllerCallbacks = require('./controllers/hr')(allModels);
 
-   /*const staffControllerCallbacks = require('./controllers/staff')(allModels);*/
+   const staffControllerCallbacks = require('./controllers/staff')(allModels);
 
    // Routes for all employees
    app.get('/login', employeeControllerCallbacks.getLoginForm);
@@ -65,10 +65,10 @@ module.exports = (app, allModels) => {
    app.put('/hr/leaveApplication/:id', hrControllerCallbacks.updateLeaveApplicationById);
 
    // Routes for Staff
-/*   app.get('/staff/leaveApplication', staffControllerCallbacks.getAllLeaveApplication);
+   /*app.get('/staff/leaveApplication', staffControllerCallbacks.getAllLeaveApplication);*/
    app.get('/staff/leaveApplication/new', staffControllerCallbacks.getNewLeaveApplicationForm);
    app.post('/staff/leaveApplication', staffControllerCallbacks.createLeaveApplication);
-   app.get('/staff/leaveApplication/:id', staffControllerCallbacks.getLeaveApplicationById);
+   /*app.get('/staff/leaveApplication/:id', staffControllerCallbacks.getLeaveApplicationById);
    app.get('/staff/leaveApplication/:id/edit', staffControllerCallbacks.getEditLeaveApplicationById);
    app.put('/staff/leaveApplication/:id', staffControllerCallbacks.updateLeaveApplicationById);*/
 };
