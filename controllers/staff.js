@@ -17,7 +17,6 @@ module.exports = (db) => {
                 const data = {
                     records: queryResult
                 };
-
                 response.render('staff/allLeaveApplication', data);
             }
         });
@@ -46,9 +45,11 @@ module.exports = (db) => {
             if (error) {
                 console.log("Controller: ", error.message);
             } else {
-                response.redirect("/staff/leaveApplication");
+                console.log("Leave created successfully!");
             }
         });
+
+        response.redirect("/staff/leaveApplication");
      };
 
      let getLeaveApplicationById = (request, response) => {
@@ -76,6 +77,56 @@ module.exports = (db) => {
         });
      };
 
+     let getEditLeaveApplicationById = (request, response) => {
+
+        let selectedLeaveApplicationId = [request.params.id];
+
+        db.staff.getLeaveApplicationDetailsById(selectedLeaveApplicationId, (error, leaveApplicationDetails) => {
+
+            if (error) {
+                console.log("Error occurred");
+            } else {
+
+                if (leaveApplicationDetails.length > 0) {
+
+                    const data = {
+                        records: leaveApplicationDetails
+                    };
+                    response.render('staff/editLeaveApplicationById', data);
+
+                } else {
+                    response.send("There are no leave applications with this ID.");
+                }
+            }
+        });
+    };
+
+    let updateLeaveApplicationById = (request, response) => {
+
+        let selectedLeaveApplicationId = parseInt(request.params.id);
+        console.log("Controller: Selected Leave Appl ID is " + selectedLeaveApplicationId);
+
+        let updatedLeave = {
+            selectedLeaveApplicationId: parseInt(request.params.id),
+            leaveType: request.body.leave_type,
+            startDate: request.body.start_date,
+            endDate: request.body.end_date
+        };
+
+        console.log("Controller: Updated Leave: ", updatedLeave);
+
+        db.staff.updateLeaveApplicationDetailsById(updatedLeave, (error, leaveApplicationDetails) => {
+
+            if (error) {
+                console.log("Error occurred");
+            } else {
+                console.log("Controller: Update successful!");
+            }
+        });
+
+        response.redirect("/staff/leaveApplication/");
+    };
+
     /**
      * ===========================================
      * Export controller functions as a module
@@ -85,6 +136,8 @@ module.exports = (db) => {
         getAllLeaveApplication,
         getNewLeaveApplicationForm,
         createLeaveApplication,
-        getLeaveApplicationById
+        getLeaveApplicationById,
+        getEditLeaveApplicationById,
+        updateLeaveApplicationById
     };
 };
