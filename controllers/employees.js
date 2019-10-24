@@ -30,14 +30,13 @@ module.exports = (db) => {
                     console.log("Your role type ID is: " + userExists[0].role_type_id);
 
                     response.cookie('userId', userExists[0].id);
-                    response.cookie('loggedin', true);
 
                     switch(userExists[0].role_type_id) {
                         case 1:
                             response.redirect('/hr/leaveApplication');
                             break;
                         case 2:
-                            response.send("You are staff");
+                            response.redirect('/staff/leaveApplication');
                             break;
                         default:
                             response.send("Your role is not defined in the system yet.");
