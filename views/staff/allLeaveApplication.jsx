@@ -1,5 +1,6 @@
 var React = require('react');
 var DefaultLayout = require('../layouts/default');
+var StaffNavbar = require('../layouts/staff_navbar');
 
 class AllLeaveApplication extends React.Component {
     render() {
@@ -22,6 +23,7 @@ class AllLeaveApplication extends React.Component {
         return (
 
             <DefaultLayout title="Staff: View All Leave Applications">
+                <StaffNavbar />
                 <h1>All Leave Applications</h1>
                 <table>
                     <tr>

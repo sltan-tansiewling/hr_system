@@ -1,5 +1,6 @@
 var React = require('react');
 var DefaultLayout = require('../layouts/default');
+var StaffNavbar = require('../layouts/staff_navbar');
 
 class EditLeaveApplication extends React.Component {
 
@@ -8,6 +9,7 @@ class EditLeaveApplication extends React.Component {
         return (
 
             <DefaultLayout title="Staff - Edit Leave Application Details">
+                <StaffNavbar />
                 <h1>Edit Leave Application Details</h1>
                 <form method="POST" action={"/staff/leaveApplication/" + this.props.records[0].id + "?_method=PUT"}>
                     ID: <input type="text" name="id" value={this.props.records[0].id} readOnly />
