@@ -10,7 +10,7 @@ module.exports = (dbPoolInstance) => {
         let employeeId = [userId];
         console.log("Model employeeId " + employeeId);
 
-        let getOwnLeaveQuery = "SELECT leave_application.id, leave_type.name AS leave_type, leave_application.start_date, leave_application.end_date, leave_status.name AS status FROM leave_application INNER JOIN leave_type ON (leave_application.leave_type_id = leave_type.id) INNER JOIN leave_status ON (leave_application.leave_status_id = leave_status.id) WHERE leave_application.employee_id = $1";
+        let getOwnLeaveQuery = "SELECT leave_application.id, leave_type.name AS leave_type, leave_application.start_date, leave_application.end_date, leave_status.name AS status FROM leave_application INNER JOIN leave_type ON (leave_application.leave_type_id = leave_type.id) INNER JOIN leave_status ON (leave_application.leave_status_id = leave_status.id) WHERE leave_application.employee_id = $1 ORDER BY leave_application.id DESC";
 
         dbPoolInstance.query(getOwnLeaveQuery, employeeId, (error, queryResult) => {
 
