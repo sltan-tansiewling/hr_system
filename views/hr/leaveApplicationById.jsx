@@ -1,5 +1,6 @@
 var React = require('react');
 var DefaultLayout = require('../layouts/default');
+var HRNavbar = require('../layouts/hr_navbar');
 
 class LeaveApplication extends React.Component {
 
@@ -8,6 +9,7 @@ class LeaveApplication extends React.Component {
         return (
 
             <DefaultLayout title="HR - View Staff Leave Application Details">
+                <HRNavbar />
                 <h1>Staff Leave Application Details</h1>
                 <form method="GET">
                     ID: <input type="text" name="id" value={this.props.records[0].id} readOnly />
