@@ -7,6 +7,12 @@ class EditLeaveApplication extends React.Component {
 
     render () {
 
+        let displayLeaveStatus = this.props.selectedLeaveStatus.map ((leaveStatus) => {
+            return (
+                <option value={leaveStatus.id}>{leaveStatus.name}</option>
+            );
+        });
+
         return (
 
             <DefaultLayout title="HR - View Staff Leave Application Details">
@@ -66,7 +72,9 @@ class EditLeaveApplication extends React.Component {
                                 <label for="status">Status: </label>
                             </div>
                             <div class="col-75">
-                                <input type="text" name="status" value={this.props.records[0].status} />
+                                <select name="status" value={this.props.records[0].leave_status_id}>
+                                    {displayLeaveStatus}
+                                </select>
                             </div>
                         </div>
 
