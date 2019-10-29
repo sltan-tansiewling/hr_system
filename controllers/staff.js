@@ -59,12 +59,24 @@ module.exports = (db) => {
             // If any of the date fields are empty, throw error
         if (!newLeaveValues.startDate || !newLeaveValues.endDate) {
 
-            response.send("Start or end date cannot be empty!");
+            let errorMsg = "Start or end date cannot be empty.";
+            console.log(errorMsg);
+
+            const data = {errorMsg};
+            console.log(data);
+
+            response.render('staff/errorPage', data);
         } else {
             // Check if startDate is later than endDate
                 // If yes, throw error
             if (newLeaveValues.startDate > newLeaveValues.endDate) {
-                response.send("Start date cannot be later than end date.");
+                let errorMsg = "Start date cannot be later than end date.";
+                console.log(errorMsg);
+
+                const data = {errorMsg};
+                console.log(data);
+
+                response.render('staff/errorPage', data);
             } else {
                 db.staff.createNewLeaveApplication (newLeaveValues, (error, queryResult) => {
 
@@ -158,12 +170,25 @@ module.exports = (db) => {
             // If any of the date fields are empty, throw error
         if (!updatedLeave.startDate || !updatedLeave.endDate) {
 
-            response.send("Start or end date cannot be empty!");
+            let errorMsg = "Start or end date cannot be empty.";
+            console.log(errorMsg);
+
+            const data = {errorMsg};
+            console.log(data);
+
+            response.render('staff/errorPage', data);
         } else {
             // Check if startDate is later than endDate
                 // If yes, throw error
             if (updatedLeave.startDate > updatedLeave.endDate) {
-                response.send("Start date cannot be later than end date.");
+
+                let errorMsg = "Start date cannot be later than end date.";
+                console.log(errorMsg);
+
+                const data = {errorMsg};
+                console.log(data);
+
+                response.render('staff/errorPage', data);
             } else {
                 db.staff.updateLeaveApplicationDetailsById(updatedLeave, (error, leaveApplicationDetails) => {
 
