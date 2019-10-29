@@ -59,53 +59,21 @@ module.exports = (dbPoolInstance) => {
 
     let updateLeaveApplicationDetailsById = (inputs, callback) => {
 
-        let leaveType = [inputs.leaveType];
-        console.log("Model: Leave Type is " + leaveType);
+        let newValues = [inputs.selectedLeaveApplicationId, inputs.leaveTypeId, inputs.startDate, inputs.endDate];
 
-        let getLeaveTypeIdQuery = "SELECT id FROM leave_type WHERE name = $1";
+        let updateLeaveQuery = "UPDATE leave_application SET leave_type_id = $2, start_date = $3, end_date = $4 WHERE id = $1";
 
-        dbPoolInstance.query(getLeaveTypeIdQuery, leaveType, (error, getLeaveId) => {
+        dbPoolInstance.query(updateLeaveQuery, newValues, (error, updateResult) => {
 
-            console.log("I am in update query 1");
+            console.log("I am in update query 2");
 
             if (error) {
-                console.log("There is an error getting leave application id.");
+                console.log("There is an error updating leave application details.");
                 console.log(error.message);
                 callback(error, null);
             } else {
-                //callback(null, getLeaveId.rows);
+                callback(null, updateResult.rows);
                 console.log("Model: Update successful!");
-
-                console.log("Model inputs: ", inputs);
-                let selectedId = inputs.selectedLeaveApplicationId;
-                console.log("Model: Selected ID is " + selectedId);
-
-                let leaveTypeId = getLeaveId.rows[0].id;
-                console.log("Model: leaveTypeId: ", leaveTypeId);
-
-                let startDate = inputs.startDate;
-                console.log("Model: Start Date is ", startDate);
-
-                let endDate = inputs.endDate;
-                console.log("Model: End Date is ", endDate);
-
-                let newValues = [selectedId, leaveTypeId, startDate, endDate];
-
-                let updateLeaveQuery = "UPDATE leave_application SET leave_type_id = $2, start_date = $3, end_date = $4 WHERE id = $1";
-
-                dbPoolInstance.query(updateLeaveQuery, newValues, (error, updateResult) => {
-
-                    console.log("I am in update query 2");
-
-                    if (error) {
-                        console.log("There is an error updating leave application details.");
-                        console.log(error.message);
-                        callback(error, null);
-                    } else {
-                        callback(null, updateResult.rows);
-                        console.log("Model: Update successful!");
-                    }
-                });
             }
         });
     };
