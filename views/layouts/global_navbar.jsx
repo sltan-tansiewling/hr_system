@@ -3,6 +3,7 @@ var DefaultLayout = require('../layouts/default');
 
 class GlobalNavbar extends React.Component {
     render() {
+
         return (
             <div class="global-nav">
                         <div class="logo">
@@ -13,7 +14,9 @@ class GlobalNavbar extends React.Component {
                                 <img class="profile-img" src="/user_profile.png" />
                             </div>
                             <div class="logout">
-                                <img class="logout-img" src="/logout.png" />
+                                <a href="/logout">
+                                    <img class="logout-img" src="/logout.png" />
+                                </a>
                             </div>
                         </div>
                     </div>
