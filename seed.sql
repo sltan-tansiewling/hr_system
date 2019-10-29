@@ -7,6 +7,7 @@ INSERT INTO leave_type (name) VALUES ('Medical Leave');
 INSERT INTO leave_status (name) VALUES ('Pending Approval');
 INSERT INTO leave_status (name) VALUES ('Approved');
 INSERT INTO leave_status (name) VALUES ('Rejected');
+INSERT INTO leave_status (name) VALUES ('Cancel');
 
 INSERT INTO employees (name, dept, join_since, role_type_id, username, password) VALUES ('Michelle', 'Manpower', '2010-01-04', 1, 'michellelim', 'mlpwd');
 INSERT INTO employees (name, dept, join_since, role_type_id, username, password) VALUES ('Siew Ling', 'IT', '2019-09-16', 2, 'sltan', 'slpwd');

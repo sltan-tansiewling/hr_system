@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS employees (
     id SERIAL PRIMARY KEY,
     name TEXT,
     dept TEXT,
-    join_since DATE,
+    join_since TEXT,
     role_type_id INTEGER,
     username TEXT,
     password TEXT
