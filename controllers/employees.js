@@ -54,6 +54,14 @@ module.exports = (db) => {
         });
     };
 
+    let logout = (request, response) => {
+        response.clearCookie("userId");
+        response.clearCookie("userRole");
+
+        console.log("You have logged out successfully.");
+        response.redirect("/login");
+    };
+
     /**
      * ===========================================
      * Export controller functions as a module
@@ -61,6 +69,7 @@ module.exports = (db) => {
      */
     return {
         getLoginForm: getLoginFormControllerCallback,
-        postLogin: postLoginControllerCallback
+        postLogin: postLoginControllerCallback,
+        logout
     };
 };
