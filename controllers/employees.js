@@ -30,6 +30,7 @@ module.exports = (db) => {
                     console.log("Your role type ID is: " + userExists[0].role_type_id);
 
                     response.cookie('userId', userExists[0].id);
+                    response.cookie('userRole', userExists[0].role_type_id);
 
                     switch(userExists[0].role_type_id) {
                         case 1:
