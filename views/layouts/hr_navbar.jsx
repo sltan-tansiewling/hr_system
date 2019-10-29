@@ -6,7 +6,7 @@ class HRNavbar extends React.Component {
 
         return (
 
-            <div>
+            <div class="col navBar">
                 <ul>
                     <li>
                         <a href="/hr/leaveApplication">

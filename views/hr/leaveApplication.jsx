@@ -1,6 +1,7 @@
 var React = require('react');
 var DefaultLayout = require('../layouts/default');
 var HRNavbar = require('../layouts/hr_navbar');
+var GlobalNavbar = require('../layouts/global_navbar');
 
 class LeaveApplication extends React.Component {
 
@@ -24,8 +25,10 @@ class LeaveApplication extends React.Component {
 
         return (
             <DefaultLayout title="HR - View Staff Leave Applications">
+                <GlobalNavbar />
                 <HRNavbar />
-                <h1>Staff Leave Applications</h1>
+                <div class=" col mainContent">
+                    <h1>Staff Leave Applications</h1>
                     <table>
                         <tr>
                             <th>No.</th>
@@ -39,6 +42,7 @@ class LeaveApplication extends React.Component {
                         </tr>
                         {displayRecords}
                     </table>
+                </div>
             </DefaultLayout>
 
         );

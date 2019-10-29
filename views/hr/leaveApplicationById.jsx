@@ -1,6 +1,7 @@
 var React = require('react');
 var DefaultLayout = require('../layouts/default');
 var HRNavbar = require('../layouts/hr_navbar');
+var GlobalNavbar = require('../layouts/global_navbar');
 
 class LeaveApplication extends React.Component {
 
@@ -9,22 +10,79 @@ class LeaveApplication extends React.Component {
         return (
 
             <DefaultLayout title="HR - View Staff Leave Application Details">
+                <GlobalNavbar />
                 <HRNavbar />
-                <h1>Staff Leave Application Details</h1>
-                <form method="GET">
-                    ID: <input type="text" name="id" value={this.props.records[0].id} readOnly />
-                    <br />
-                    Employee: <input type="text" name="employee_name" value={this.props.records[0].employee_name} readOnly />
-                    <br />
-                    Leave Type: <input type="text" name="leave_type" value={this.props.records[0].leave_type} readOnly />
-                    <br />
-                    Start Date: <input type="text" name="start_date" value={this.props.records[0].start_date} readOnly />
-                    <br />
-                    End Date: <input type="text" name="end_date" value={this.props.records[0].end_date} readOnly />
-                    <br />
-                    Status: <input type="text" name="status" value={this.props.records[0].status} readOnly />
-                </form>
-                <a href={"/hr/leaveApplication/" + this.props.records[0].id + "/edit"}>Edit</a>
+                <div class=" col mainContent">
+                    <h1>Staff Leave Application Details</h1>
+                    <form method="GET">
+
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="id">ID: </label>
+                            </div>
+                            <div class="col-75">
+                                <p>{this.props.records[0].id}</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="employee_name">Employee: </label>
+                            </div>
+                            <div class="col-75">
+                                <p>{this.props.records[0].employee_name}</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="leave_type">Leave Type: </label>
+                            </div>
+                            <div class="col-75">
+                                <p>{this.props.records[0].leave_type}</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="start_date">Start Date: </label>
+                            </div>
+                            <div class="col-75">
+                                <p>{this.props.records[0].start_date}</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="end_date">End Date: </label>
+                            </div>
+                            <div class="col-75">
+                                <p>{this.props.records[0].end_date}</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="status">Status: </label>
+                            </div>
+                            <div class="col-75">
+                                <p>{this.props.records[0].status}</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-25">
+                            </div>
+                            <div class="col-75">
+                                <p>
+                                    <a href={"/hr/leaveApplication/" + this.props.records[0].id + "/edit"}>Edit</a>
+                                </p>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
             </DefaultLayout>
         );
     };

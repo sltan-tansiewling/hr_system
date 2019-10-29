@@ -1,6 +1,7 @@
 var React = require('react');
 var DefaultLayout = require('../layouts/default');
 var StaffNavbar = require('../layouts/staff_navbar');
+var GlobalNavbar = require('../layouts/global_navbar');
 
 class AllLeaveApplication extends React.Component {
     render() {
@@ -23,20 +24,28 @@ class AllLeaveApplication extends React.Component {
         return (
 
             <DefaultLayout title="Staff: View All Leave Applications">
-                <StaffNavbar />
-                <h1>All Leave Applications</h1>
-                <table>
-                    <tr>
-                        <th>No.</th>
-                        <th>Leave Type</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Status</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    {displayRecords}
-                </table>
+
+                    <GlobalNavbar />
+
+                    <div class="main">
+                        <StaffNavbar />
+                        <div class="col mainContent">
+                            <h1>All Leave Applications</h1>
+                            <table>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Leave Type</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                {displayRecords}
+                            </table>
+                        </div>
+                    </div>
+
             </DefaultLayout>
         );
     };
