@@ -55,17 +55,28 @@ module.exports = (db) => {
             defaultStatus: 1
         };
 
-        db.staff.createNewLeaveApplication (newLeaveValues, (error, queryResult) => {
+        // Do a check for input values
+            // If any of the date fields are empty, throw error
+        if (!newLeaveValues.startDate || !newLeaveValues.endDate) {
 
-            if (error) {
-                console.log("Controller: ", error.message);
+            response.send("Start or end date cannot be empty!");
+        } else {
+            // Check if startDate is later than endDate
+                // If yes, throw error
+            if (newLeaveValues.startDate > newLeaveValues.endDate) {
+                response.send("Start date cannot be later than end date.");
             } else {
-                console.log("Leave created successfully!");
-                response.redirect("/staff/leaveApplication/");
+                db.staff.createNewLeaveApplication (newLeaveValues, (error, queryResult) => {
+
+                    if (error) {
+                        console.log("Controller: ", error.message);
+                    } else {
+                        console.log("Leave created successfully!");
+                        response.redirect("/staff/leaveApplication/");
+                    }
+                });
             }
-        });
-
-
+        }
      };
 
      let getLeaveApplicationById = (request, response) => {
@@ -143,15 +154,28 @@ module.exports = (db) => {
 
         console.log("Controller: Updated Leave: ", updatedLeave);
 
-        db.staff.updateLeaveApplicationDetailsById(updatedLeave, (error, leaveApplicationDetails) => {
+        // Do a check for input values
+            // If any of the date fields are empty, throw error
+        if (!updatedLeave.startDate || !updatedLeave.endDate) {
 
-            if (error) {
-                console.log("Error occurred");
+            response.send("Start or end date cannot be empty!");
+        } else {
+            // Check if startDate is later than endDate
+                // If yes, throw error
+            if (updatedLeave.startDate > updatedLeave.endDate) {
+                response.send("Start date cannot be later than end date.");
             } else {
-                console.log("Controller: Update successful!");
-                response.redirect("/staff/leaveApplication/");
+                db.staff.updateLeaveApplicationDetailsById(updatedLeave, (error, leaveApplicationDetails) => {
+
+                    if (error) {
+                        console.log("Error occurred");
+                    } else {
+                        console.log("Controller: Update successful!");
+                        response.redirect("/staff/leaveApplication/");
+                    }
+                });
             }
-        });
+        }
     };
 
 /*    let getLeaveEntitlement = (request, response) => {
