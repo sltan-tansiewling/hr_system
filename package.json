@@ -4,7 +4,11 @@
   "description": "Allows you to apply and track your leave application",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines" : {
+    "node" : "^12.10.0"
   },
   "repository": {
     "type": "git",
