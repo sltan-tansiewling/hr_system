@@ -7,6 +7,14 @@ class EditLeaveApplication extends React.Component {
 
     render () {
 
+        let displayLeaveType = this.props.selectedLeaveType.map ((leaveType) => {
+
+            return (
+
+                <option value={leaveType.id}>{leaveType.name}</option>
+            );
+        });
+
         return (
 
             <DefaultLayout title="Staff - Edit Leave Application Details">
@@ -29,7 +37,9 @@ class EditLeaveApplication extends React.Component {
                                 <label for="leave_type">Leave Type: </label>
                             </div>
                             <div class="col-75">
-                                <input type="text" name="leave_type" value={this.props.records[0].leave_type} />
+                                <select name="leave_type" value={this.props.records[0].leave_type_id}>
+                                    {displayLeaveType}
+                                </select>
                             </div>
                         </div>
 
