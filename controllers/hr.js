@@ -70,10 +70,15 @@ module.exports = (db) => {
 
                 if (leaveApplicationDetails.length > 0) {
 
-                    const data = {
-                        records: leaveApplicationDetails
-                    };
-                    response.render('hr/editLeaveApplicationById', data);
+                    db.hr.getLeaveStatus ((error, leaveStatus) => {
+
+                        const data = {
+                            records: leaveApplicationDetails,
+                            selectedLeaveStatus: leaveStatus
+                        };
+                        console.log(data.records);
+                        response.render('hr/editLeaveApplicationById', data);
+                    });
 
                 } else {
                     response.send("There are no leave applications with this ID.");
@@ -83,12 +88,6 @@ module.exports = (db) => {
     };
 
     let updateLeaveApplicationStatusById = (request, response) => {
-
-        let selectedLeaveApplicationId = parseInt(request.params.id);
-        console.log("Controller: Selected Leave Appl ID is " + selectedLeaveApplicationId);
-
-        let newStatus = request.body.status;
-        console.log("Controller: New Status is " + newStatus);
 
         let newValues = {
             newStatus: request.body.status,
@@ -103,10 +102,9 @@ module.exports = (db) => {
                 console.log("Error occurred");
             } else {
                 console.log("Controller: Update successful!");
+                response.redirect("/hr/leaveApplication/" + newValues.selectedLeaveApplicationId);
             }
         });
-
-        response.redirect("/hr/leaveApplication/" + selectedLeaveApplicationId);
     };
 
 
