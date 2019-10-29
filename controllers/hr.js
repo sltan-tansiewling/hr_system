@@ -8,103 +8,180 @@ module.exports = (db) => {
 
     let getAllStaffLeaveApplication = (request, response) => {
 
-        db.hr.getStaffLeaveApplications((error, leaveApplications) => {
+        // Check user role
+        let currentUserRole = request.cookies["userRole"];
+        console.log("Current user role: " + currentUserRole);
 
-            if (error) {
-                console.log("Error occurred");
-            } else {
+        switch(parseInt(currentUserRole)) {
+            case 1: // User is HR
 
-                if (leaveApplications.length > 0) {
+                db.hr.getStaffLeaveApplications((error, leaveApplications) => {
 
-                    const data = {
-                        records: leaveApplications
-                    };
-                    response.render('hr/leaveApplication', data);
+                    if (error) {
+                        console.log("Error occurred");
+                    } else {
 
-                } else {
-                    response.send("There are no leave applications.");
-                }
-            }
-        });
+                        if (leaveApplications.length > 0) {
+
+                            const data = {
+                                records: leaveApplications
+                            };
+                            response.render('hr/leaveApplication', data);
+
+                        } else {
+                            response.send("There are no leave applications.");
+                        }
+                    }
+                });
+
+                break;
+
+            case 2: // User is not HR
+
+                response.status(403).send("You are unauthorized to view this page.");
+                break;
+
+            default: // There is no user role type detected
+
+                response.status(403).send("You are unauthorized to view this page.");
+                break;
+        }
+
+
     };
 
     let getLeaveApplicationDetailsById = (request, response) => {
 
-        let selectedLeaveApplicationId = [request.params.id];
+        // Check user role
+        let currentUserRole = request.cookies["userRole"];
+        console.log("Current user role: " + currentUserRole);
 
-        db.hr.getStaffLeaveApplicationById(selectedLeaveApplicationId, (error, leaveApplicationDetails) => {
+        switch(parseInt(currentUserRole)) {
+            case 1: // User is HR
 
-            if (error) {
-                console.log("Error occurred");
-            } else {
+                let selectedLeaveApplicationId = [request.params.id];
 
-                if (leaveApplicationDetails.length > 0) {
+                db.hr.getStaffLeaveApplicationById(selectedLeaveApplicationId, (error, leaveApplicationDetails) => {
 
-                    const data = {
-                        records: leaveApplicationDetails
-                    };
-                    response.render('hr/leaveApplicationById', data);
+                    if (error) {
+                        console.log("Error occurred");
+                    } else {
 
-                    /*
-                    * ======================================
-                    * Check if URL path contains /edit, render to edit form so that don't need to repeat the method below
-                    * =======================================
-                    */
+                        if (leaveApplicationDetails.length > 0) {
 
-                } else {
-                    response.send("There are no leave applications with this ID.");
-                }
-            }
-        });
+                            const data = {
+                                records: leaveApplicationDetails
+                            };
+                            response.render('hr/leaveApplicationById', data);
+
+                        } else {
+                            response.send("There are no leave applications with this ID.");
+                        }
+                    }
+                });
+
+                break;
+
+            case 2: // User is not HR
+
+                response.status(403).send("You are unauthorized to view this page.");
+                break;
+
+            default: // There is no user role type detected
+
+                response.status(403).send("You are unauthorized to view this page.");
+                break;
+        }
+
     };
 
     let getEditLeaveApplicationStatusById = (request, response) => {
 
-        let selectedLeaveApplicationId = [request.params.id];
+        // Check user role
+        let currentUserRole = request.cookies["userRole"];
+        console.log("Current user role: " + currentUserRole);
 
-        db.hr.getStaffLeaveApplicationById(selectedLeaveApplicationId, (error, leaveApplicationDetails) => {
+        switch(parseInt(currentUserRole)) {
+            case 1: // User is HR
 
-            if (error) {
-                console.log("Error occurred");
-            } else {
+                let selectedLeaveApplicationId = [request.params.id];
 
-                if (leaveApplicationDetails.length > 0) {
+                db.hr.getStaffLeaveApplicationById(selectedLeaveApplicationId, (error, leaveApplicationDetails) => {
 
-                    db.hr.getLeaveStatus ((error, leaveStatus) => {
+                    if (error) {
+                        console.log("Error occurred");
+                    } else {
 
-                        const data = {
-                            records: leaveApplicationDetails,
-                            selectedLeaveStatus: leaveStatus
-                        };
-                        console.log(data.records);
-                        response.render('hr/editLeaveApplicationById', data);
-                    });
+                        if (leaveApplicationDetails.length > 0) {
 
-                } else {
-                    response.send("There are no leave applications with this ID.");
-                }
-            }
-        });
+                            db.hr.getLeaveStatus ((error, leaveStatus) => {
+
+                                const data = {
+                                    records: leaveApplicationDetails,
+                                    selectedLeaveStatus: leaveStatus
+                                };
+                                console.log(data.records);
+                                response.render('hr/editLeaveApplicationById', data);
+                            });
+
+                        } else {
+                            response.send("There are no leave applications with this ID.");
+                        }
+                    }
+                });
+
+                break;
+
+            case 2: // User is not HR
+
+                response.status(403).send("You are unauthorized to view this page.");
+                break;
+
+            default: // There is no user role type detected
+
+                response.status(403).send("You are unauthorized to view this page.");
+                break;
+        }
+
     };
 
     let updateLeaveApplicationStatusById = (request, response) => {
 
-        let newValues = {
-            newStatus: request.body.status,
-            selectedLeaveApplicationId: parseInt(request.params.id)
-        };
+        // Check user role
+        let currentUserRole = request.cookies["userRole"];
+        console.log("Current user role: " + currentUserRole);
 
-        console.log("Controller: New Values: ", newValues);
+        switch(parseInt(currentUserRole)) {
+            case 1: // User is HR
+                let newValues = {
+                    newStatus: request.body.status,
+                    selectedLeaveApplicationId: parseInt(request.params.id)
+                };
 
-        db.hr.updateStaffLeaveApplicationStatusById(newValues, (error, leaveApplicationDetails) => {
+                console.log("Controller: New Values: ", newValues);
 
-            if (error) {
-                console.log("Error occurred");
-            } else {
-                console.log("Controller: Update successful!");
-                response.redirect("/hr/leaveApplication/" + newValues.selectedLeaveApplicationId);
-            }
-        });
+                db.hr.updateStaffLeaveApplicationStatusById(newValues, (error, leaveApplicationDetails) => {
+
+                    if (error) {
+                        console.log("Error occurred");
+                    } else {
+                        console.log("Controller: Update successful!");
+                        response.redirect("/hr/leaveApplication/" + newValues.selectedLeaveApplicationId);
+                    }
+                });
+
+                break;
+
+            case 2: // User is not HR
+
+                response.status(403).send("You are unauthorized to view this page.");
+                break;
+
+            default: // There is no user role type detected
+
+                response.status(403).send("You are unauthorized to view this page.");
+                break;
+        }
     };
 
 
