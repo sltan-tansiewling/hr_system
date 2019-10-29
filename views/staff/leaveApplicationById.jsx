@@ -14,7 +14,7 @@ class LeaveApplication extends React.Component {
                 <StaffNavbar />
                     <div class="col mainContent">
                         <h1>Leave Application Details</h1>
-                        <form method="GET">
+                        <form method="GET" action={"/staff/leaveApplication/" + this.props.records[0].id + "/edit"}>
 
                             <div class="row">
                                 <div class="col-25">
@@ -63,13 +63,7 @@ class LeaveApplication extends React.Component {
                             </div>
 
                             <div class="row">
-                                <div class="col-25">
-                                </div>
-                                <div class="col-75">
-                                    <p>
-                                        <a href={"/staff/leaveApplication/" + this.props.records[0].id + "/edit"}>Edit</a>
-                                    </p>
-                                </div>
+                                <input type="submit" value="Edit" />
                             </div>
 
                         </form>
