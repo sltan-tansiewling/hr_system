@@ -5,6 +5,14 @@ var GlobalNavbar = require('../layouts/global_navbar');
 
 class ApplyLeave extends React.Component {
     render() {
+
+        let displayLeaveType = this.props.records.map ((leaveType) => {
+
+            return (
+                <option value={leaveType.id}>{leaveType.name}</option>
+            );
+        });
+
         return (
             <DefaultLayout title="Staff: Apply Leave">
                 <GlobalNavbar />
@@ -18,7 +26,9 @@ class ApplyLeave extends React.Component {
                                 <label for="leave_type">Leave Type: </label>
                             </div>
                             <div class="col-75">
-                                <input type="text" name="leave_type" />
+                                <select name="leave_type">
+                                    {displayLeaveType}
+                                </select>
                             </div>
                         </div>
 
