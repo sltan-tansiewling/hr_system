@@ -14,9 +14,11 @@ module.exports = (db) => {
             if (error) {
                 console.log(error.message);
             } else {
+
                 const data = {
                     records: queryResult
                 };
+
                 response.render('staff/allLeaveApplication', data);
             }
         });
@@ -46,10 +48,11 @@ module.exports = (db) => {
                 console.log("Controller: ", error.message);
             } else {
                 console.log("Leave created successfully!");
+                response.redirect("/staff/leaveApplication/");
             }
         });
 
-        response.redirect("/staff/leaveApplication");
+
      };
 
      let getLeaveApplicationById = (request, response) => {
@@ -121,11 +124,54 @@ module.exports = (db) => {
                 console.log("Error occurred");
             } else {
                 console.log("Controller: Update successful!");
+                response.redirect("/staff/leaveApplication/");
+            }
+        });
+    };
+
+/*    let getLeaveEntitlement = (request, response) => {
+
+        // Read cookie user ID
+        let currentUserId = request.cookies["userId"];
+
+        let leaveEntitlement;
+
+        db.staff.getLeaveEntitlement (currentUserId, (error, leaveEntitlementQueryResult) => {
+
+            if (error) {
+                console.log("Error occurred");
+            } else {
+                console.log("Controller: Query successful!");
+
+                leaveEntitlement = leaveEntitlementQueryResult[0].entitled_leave;
+                console.log("In controller, entitled leave: " + leaveEntitlement);
+            }
+        });
+        return leaveEntitlement;
+    };
+
+    let getLeaveTaken = (request, response) => {
+
+        // Read cookie user ID
+        let currentUserId = request.cookies["userId"];
+
+        let leaveTaken;
+
+        db.staff.getLeaveTaken (currentUserId, (error, leaveTakenQueryResult) => {
+
+            if (error) {
+                console.log("Error occurred");
+            } else {
+                console.log("Controller: Query successful!");
+
+                leaveTaken = leaveTakenQueryResult[0].approved_leave;
+                console.log("In controller, leave taken: " + leaveTaken);
             }
         });
 
-        response.redirect("/staff/leaveApplication/");
-    };
+        return leaveTaken;
+    };*/
+
 
     /**
      * ===========================================
