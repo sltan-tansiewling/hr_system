@@ -54,6 +54,38 @@ module.exports = (db) => {
         });
     };
 
+    let getUserProfile = (request, response) => {
+        let currentUserId = request.cookies["userId"];
+        //let currentUserRole = request.cookies["userRole"];
+
+        db.employees.getUserProfile (currentUserId, (error, userProfile) => {
+            if (error) {
+                console.log ("Error occurred: ", error.message);
+            } else {
+                console.log ("User profile retrieved.");
+
+                const data = {
+                    userInfo: userProfile
+                };
+
+                console.log(data.userInfo);
+
+                switch (parseInt(request.cookies["userRole"])) {
+                    case 1:
+                        response.render('hr/hrProfile', data);
+                        break;
+                    case 2:
+                        response.render('staff/staffProfile', data);
+                        break;
+                    default:
+                        response.send("You are unauthorized to view or access this page.");
+                        break;
+                }
+
+            }
+        });
+    };
+
     let logout = (request, response) => {
         response.clearCookie("userId");
         response.clearCookie("userRole");
@@ -70,6 +102,7 @@ module.exports = (db) => {
     return {
         getLoginForm: getLoginFormControllerCallback,
         postLogin: postLoginControllerCallback,
-        logout
+        logout,
+        getUserProfile
     };
 };
