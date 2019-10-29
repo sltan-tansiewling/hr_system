@@ -56,6 +56,7 @@ module.exports = (app, allModels) => {
    // Routes for all employees
    app.get('/login', employeeControllerCallbacks.getLoginForm);
    app.post('/login', employeeControllerCallbacks.postLogin);
+   app.get('/logout', employeeControllerCallbacks.logout);
 
    // Routes for HR
    app.get('/hr/leaveApplication', hrControllerCallbacks.getAllLeaveApplication);
