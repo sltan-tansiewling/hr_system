@@ -34,7 +34,6 @@ module.exports = (dbPoolInstance) => {
             if (error) {
                 callback (error.message, null);
             } else {
-                callback (null, queryResult.rows);
                 console.log(queryResult.rows[0].id);
 
                 console.log("Model inputs: ", inputs);
@@ -75,7 +74,7 @@ module.exports = (dbPoolInstance) => {
         let getLeaveByIdQuery = "SELECT leave_application.id, leave_type.name AS leave_type, leave_application.start_date, leave_application.end_date, leave_status.name AS status FROM leave_application INNER JOIN leave_type ON (leave_application.leave_type_id = leave_type.id) INNER JOIN leave_status ON (leave_application.leave_status_id = leave_status.id) WHERE leave_application.id = $1";
 
         dbPoolInstance.query(getLeaveByIdQuery, selectedId, (error, queryResult) => {
-
+            console.log("HELLOOO MODEL getLeaveApplicationDetailsById");
             if (error) {
                 console.log("There is an error querying for leave application by id.");
                 callback(error, null);
@@ -101,7 +100,7 @@ module.exports = (dbPoolInstance) => {
                 console.log(error.message);
                 callback(error, null);
             } else {
-                callback(null, getLeaveId.rows);
+                //callback(null, getLeaveId.rows);
                 console.log("Model: Update successful!");
 
                 console.log("Model inputs: ", inputs);
@@ -137,6 +136,48 @@ module.exports = (dbPoolInstance) => {
             }
         });
     };
+
+    /*let getLeaveEntitlement = (userId, callback) => {
+
+        // Get current user ID
+        let currentUserId = [userId];
+
+        // Get entitled = leave entitlement
+        let entitledLeaveQuery = "SELECT entitled_leave FROM employees WHERE id = $1";
+
+        dbPoolInstance.query(entitledLeaveQuery, currentUserId, (error, entitledLeaveQueryResult) => {
+
+            if (error) {
+                callback (error.message, null);
+            } else {
+                let entitledLeave = entitledLeaveQueryResult.rows[0].entitled_leave;
+
+                callback(null, entitledLeaveQueryResult.rows);
+            }
+        });
+    };
+
+    let getLeaveTaken = (userId, callback) => {
+
+        // Get current user ID
+        let currentUserId = [userId];
+
+        // Get taken = count(leave taken and approved)
+        let takenLeaveQuery = "SELECT count(*) AS approved_leave FROM leave_application WHERE employee_id = $1 AND leave_status_id = 2";
+
+        dbPoolInstance.query(takenLeaveQuery, currentUserId, (error, takenLeaveQueryResult) => {
+
+            if (error) {
+                callback (error.message, null);
+            } else {
+                let approvedLeave = takenLeaveQueryResult.rows[0].approved_leave;
+
+                callback(null, takenLeaveQueryResult.rows);
+                console.log("In model, taken leave query result rows: ", takenLeaveQueryResult.rows[0].approved_leave);
+            }
+        });
+    };*/
+
 
     return {
         getOwnLeaveApplications,
