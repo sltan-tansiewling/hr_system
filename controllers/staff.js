@@ -136,7 +136,7 @@ module.exports = (db) => {
 
         let updatedLeave = {
             selectedLeaveApplicationId: parseInt(request.params.id),
-            leaveType: request.body.leave_type,
+            leaveTypeId: request.body.leave_type,
             startDate: request.body.start_date,
             endDate: request.body.end_date
         };
