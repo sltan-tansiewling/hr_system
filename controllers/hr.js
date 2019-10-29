@@ -29,7 +29,7 @@ module.exports = (db) => {
                             response.render('hr/leaveApplication', data);
 
                         } else {
-                            response.send("There are no leave applications.");
+                            response.send("No results found.");
                         }
                     }
                 });
@@ -38,12 +38,12 @@ module.exports = (db) => {
 
             case 2: // User is not HR
 
-                response.status(403).send("You are unauthorized to view this page.");
+                response.status(403).send("You are unauthorized to view or access this page.");
                 break;
 
             default: // There is no user role type detected
 
-                response.status(403).send("You are unauthorized to view this page.");
+                response.status(403).send("You are unauthorized to view or access this page.");
                 break;
         }
 
@@ -75,7 +75,7 @@ module.exports = (db) => {
                             response.render('hr/leaveApplicationById', data);
 
                         } else {
-                            response.send("There are no leave applications with this ID.");
+                            response.status(403).send("You are unauthorized to view or access this page.");
                         }
                     }
                 });
@@ -84,12 +84,12 @@ module.exports = (db) => {
 
             case 2: // User is not HR
 
-                response.status(403).send("You are unauthorized to view this page.");
+                response.status(403).send("You are unauthorized to view or access this page.");
                 break;
 
             default: // There is no user role type detected
 
-                response.status(403).send("You are unauthorized to view this page.");
+                response.status(403).send("You are unauthorized to view or access this page.");
                 break;
         }
 
@@ -125,7 +125,7 @@ module.exports = (db) => {
                             });
 
                         } else {
-                            response.send("There are no leave applications with this ID.");
+                            response.status(403).send("You are unauthorized to view or access this page.");
                         }
                     }
                 });
@@ -134,12 +134,12 @@ module.exports = (db) => {
 
             case 2: // User is not HR
 
-                response.status(403).send("You are unauthorized to view this page.");
+                response.status(403).send("You are unauthorized to view or access this page.");
                 break;
 
             default: // There is no user role type detected
 
-                response.status(403).send("You are unauthorized to view this page.");
+                response.status(403).send("You are unauthorized to view or access this page.");
                 break;
         }
 
@@ -174,12 +174,12 @@ module.exports = (db) => {
 
             case 2: // User is not HR
 
-                response.status(403).send("You are unauthorized to view this page.");
+                response.status(403).send("You are unauthorized to view or access this page.");
                 break;
 
             default: // There is no user role type detected
 
-                response.status(403).send("You are unauthorized to view this page.");
+                response.status(403).send("You are unauthorized to view or access this page.");
                 break;
         }
     };
