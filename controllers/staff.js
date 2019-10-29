@@ -105,10 +105,22 @@ module.exports = (db) => {
 
                 if (leaveApplicationDetails.length > 0) {
 
-                    const data = {
-                        records: leaveApplicationDetails
-                    };
-                    response.render('staff/editLeaveApplicationById', data);
+                    db.staff.getLeaveType((error, leaveType) => {
+                        if (error) {
+                            console.log("Error occurred");
+                        } else {
+                            console.log("Controller: All leave type retrieved successfully!");
+
+                            const data = {
+                                records: leaveApplicationDetails,
+                                selectedLeaveType: leaveType
+                            };
+
+                            console.log(data.records);
+
+                            response.render('staff/editLeaveApplicationById', data);
+                        }
+                    });
 
                 } else {
                     response.send("There are no leave applications with this ID.");
