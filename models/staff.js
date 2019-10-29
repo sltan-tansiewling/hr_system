@@ -44,7 +44,7 @@ module.exports = (dbPoolInstance) => {
     let getLeaveApplicationDetailsById = (id, callback) => {
 
         let selectedId = id;
-        let getLeaveByIdQuery = "SELECT leave_application.id, leave_type.name AS leave_type, leave_application.start_date, leave_application.end_date, leave_status.name AS status FROM leave_application INNER JOIN leave_type ON (leave_application.leave_type_id = leave_type.id) INNER JOIN leave_status ON (leave_application.leave_status_id = leave_status.id) WHERE leave_application.id = $1";
+        let getLeaveByIdQuery = "SELECT leave_application.id, leave_type.id AS leave_type_id, leave_type.name AS leave_type, leave_application.start_date, leave_application.end_date, leave_status.name AS status FROM leave_application INNER JOIN leave_type ON (leave_application.leave_type_id = leave_type.id) INNER JOIN leave_status ON (leave_application.leave_status_id = leave_status.id) WHERE leave_application.id = $1";
 
         dbPoolInstance.query(getLeaveByIdQuery, selectedId, (error, queryResult) => {
             console.log("HELLOOO MODEL getLeaveApplicationDetailsById");
