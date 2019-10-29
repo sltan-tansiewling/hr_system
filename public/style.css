@@ -184,6 +184,7 @@ a {
     width: 100px;
     height: 100px;
     vertical-align: middle;
+    margin-right: 10px;
 }
 
 .profile-img, .logout-img {
