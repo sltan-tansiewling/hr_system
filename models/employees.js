@@ -23,7 +23,24 @@ module.exports = (dbPoolInstance) => {
         });
     };
 
+    let getUserProfile = (id, callback) => {
+
+        let currentUserId = [id];
+        let getUserProfileQuery = "SELECT * from employees WHERE id = $1";
+
+        dbPoolInstance.query(getUserProfileQuery, currentUserId, (error, queryResult) => {
+
+            if (error) {
+                console.log("There is error querying for user profile.");
+                console.log(error.message);
+            } else {
+                callback(null, queryResult.rows);
+            }
+        });
+    };
+
     return {
-        checkUserExists
+        checkUserExists,
+        getUserProfile
     };
 };
