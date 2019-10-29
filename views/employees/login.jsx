@@ -8,6 +8,7 @@ class Login extends React.Component {
 
             <DefaultLayout title="HR System - Login">
                 <div class="loginContainer">
+                    <img class="logo-img" src="hr_logo.png" />
                     <h1>Login</h1>
                     <form method="POST" action="/login">
 
