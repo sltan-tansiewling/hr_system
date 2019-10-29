@@ -25,7 +25,20 @@ module.exports = (db) => {
      };
 
      let getNewLeaveApplicationForm = (request,response) => {
-        response.render('staff/applyLeave');
+
+        db.staff.getLeaveType((error, leaveType) => {
+            if (error) {
+                console.log("Error occurred");
+            } else {
+                console.log("Controller: All leave type retrieved successfully!");
+
+                const data = {
+                    records: leaveType
+                };
+
+                response.render('staff/applyLeave', data);
+            }
+        });
      };
 
      let createLeaveApplication = (request, response) => {
@@ -36,9 +49,9 @@ module.exports = (db) => {
 
         let newLeaveValues = {
             employeeId: currentUserId,
-            leaveType: request.body.leave_type,
+            leaveTypeId: request.body.leave_type,
             startDate: request.body.start_date,
-            endDate: request.body.start_date,
+            endDate: request.body.end_date,
             defaultStatus: 1
         };
 
