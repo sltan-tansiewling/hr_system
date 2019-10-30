@@ -54,7 +54,7 @@ module.exports = (app, allModels) => {
    const staffControllerCallbacks = require('./controllers/staff')(allModels);
 
    // Routes for all employees
-   app.get('/login', employeeControllerCallbacks.getLoginForm);
+   app.get('/', employeeControllerCallbacks.getLoginForm);
    app.post('/login', employeeControllerCallbacks.postLogin);
    app.get('/profile', employeeControllerCallbacks.getUserProfile);
    app.get('/logout', employeeControllerCallbacks.logout);
