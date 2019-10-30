@@ -38,7 +38,7 @@ module.exports = (db) => {
                             break;
                         case 2:
                             response.send ("CONTROLLER I AM LOGGED IN!");
-                            // response.redirect('/staff/leaveApplication');
+                            response.redirect('/staff/leaveApplication');
                             break;
                         default:
                             response.send("Your role is not defined in the system yet.");
