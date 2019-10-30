@@ -12,8 +12,8 @@ class AllLeaveApplication extends React.Component {
                 <tr>
                     <td>{application.id}</td>
                     <td>{application.leave_type}</td>
-                    {/*<td>{application.start_date}</td>
-                    <td>{application.end_date}</td>*/}
+                    <td>{application.start_date}</td>
+                    {/*<td>{application.end_date}</td>*/}
                     <td>{application.status}</td>
                     <td><a href={"/staff/leaveApplication/" + application.id}>View</a></td>
                     <td><a href={"/staff/leaveApplication/" + application.id + "/edit"}>Edit</a></td>
