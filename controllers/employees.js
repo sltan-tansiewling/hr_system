@@ -8,7 +8,7 @@ module.exports = (db) => {
 
     let getLoginFormControllerCallback = (request, response) => {
         console.log ("I AM IN EMPLOYEE CONTROLLER after login!!");
-        response.render('employees/login');
+        // response.render('employees/login');
     };
 
     let postLoginControllerCallback = (request, response) => {
@@ -37,7 +37,8 @@ module.exports = (db) => {
                             response.redirect('/hr/leaveApplication');
                             break;
                         case 2:
-                            response.redirect('/staff/leaveApplication');
+                            response.send ("CONTROLLER I AM LOGGED IN!");
+                            // response.redirect('/staff/leaveApplication');
                             break;
                         default:
                             response.send("Your role is not defined in the system yet.");
