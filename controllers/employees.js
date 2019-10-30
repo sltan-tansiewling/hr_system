@@ -37,7 +37,7 @@ module.exports = (db) => {
                             response.redirect('/hr/leaveApplication');
                             break;
                         case 2:
-                            response.send ("CONTROLLER I AM LOGGED IN!");
+                            /*response.send ("CONTROLLER I AM LOGGED IN!");*/
                             response.redirect('/staff/leaveApplication');
                             break;
                         default:
