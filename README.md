@@ -36,6 +36,7 @@ Leave Application
 3. As a staff, he/she should be able to edit his/her leave application details.
 4. As a HR, he/she should be able to view all the leave applications submitted by all the staff.
 5. As a HR, he/she should be able to approve or reject leave applications.
+6. As a staff, he/she should not be able to access HR's URLs.
 
 #### Assumptions
 
