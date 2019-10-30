@@ -52,7 +52,7 @@ Leave Application
 
 #### ERD
 
-![ERD](https://github.com/tansiewling-hotmail/hr_system_erd.jpg)
+![ERD](https://github.com/tansiewling-hotmail/hr_system/blob/master/hr_system_erd.jpg)
 
 #### Further-To-Do
 
