@@ -19,6 +19,8 @@ module.exports = (db) => {
                     records: queryResult
                 };
 
+                console.log(data.records);
+
                 response.render('staff/allLeaveApplication', data);
             }
         });
