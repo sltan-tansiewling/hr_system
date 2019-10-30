@@ -7,8 +7,8 @@ module.exports = (db) => {
      */
 
     let getLoginFormControllerCallback = (request, response) => {
-        console.log ("I AM IN EMPLOYEE CONTROLLER after login!!");
-        // response.render('employees/login');
+        console.log ("I AM IN EMPLOYEE CONTROLLER getting login form!!");
+        response.render('employees/login');
     };
 
     let postLoginControllerCallback = (request, response) => {
