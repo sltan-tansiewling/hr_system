@@ -91,7 +91,7 @@ module.exports = (db) => {
         response.clearCookie("userRole");
 
         console.log("You have logged out successfully.");
-        response.redirect("/login");
+        response.redirect("/");
     };
 
     /**
