@@ -51,6 +51,9 @@ Leave Application
 4. MVC
 5. HTML React JS Template
 
+#### Wireframe
+![Workflow](https://github.com/tansiewling-hotmail/hr_system/blob/master/hr_system_wireframe.png)
+
 #### ERD
 
 ![ERD](https://github.com/tansiewling-hotmail/hr_system/blob/master/hr_system_erd.jpg)
