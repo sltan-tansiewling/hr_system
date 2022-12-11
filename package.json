@@ -22,7 +22,7 @@
   "homepage": "https://github.com/tansiewling-hotmail/hr_system#readme",
   "dependencies": {
     "cookie-parser": "^1.4.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-react-views": "^0.11.0",
     "js-sha256": "^0.9.0",
     "jsonfile": "^5.0.0",
